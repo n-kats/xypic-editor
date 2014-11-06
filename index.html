@@ -11,6 +11,12 @@
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+	<script src="javascripts/MathJaxConfig.js"></script>
+	<script src="javascripts/jquery.js"></script>
+	<script src="javascripts/xypic.js"></script>
+	<script src="javascripts/xygen.js"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -32,7 +38,49 @@
 <a id="xypic-editor" class="anchor" href="#xypic-editor" aria-hidden="true"><span class="octicon octicon-link"></span></a>xypic-editor</h1>
 
 <p>xypic editor</p>
-      </section>
+
+<div>
+<table>
+	<tr>
+		<td><input type="text" id="a00"></td>
+		<td><input type="text" id="a01"></td>
+		<td><input type="text" id="a02"></td>
+	</tr>
+
+	<tr>
+		<td><input type="text" id="a10"></td>
+		<td><input type="text" id="a11"></td>
+		<td><input type="text" id="a12"></td>
+	</tr>
+
+	<tr>
+		<td><input type="text" id="a20"></td>
+		<td><input type="text" id="a21"></td>
+		<td><input type="text" id="a22"></td>
+	</tr>
+</table>
+<input id="btn" type="button" value="update">
+<h2>edge(not implemented)</h2>
+<input id="from" type="text" placeholder="from :: example : 12">
+<input id="type" type="text" placeholder="command">
+<input id="btne" type="button" value="update-edge">
+
+<div id="d">
+\[
+
+\xymatrix{
+	00 & 01 & 02 \\
+	10 & 11 \ar[u]_h & 12 \\
+	20 \ar[rr]_{\varphi_{ji}} \ar[ruu]^{f_i} \ar[ru]_{\varphi} & 21 & 22 \ar[luu]_{f_i} \ar[lu]^{\varphi_j} \\
+}
+]
+\]
+</div>
+
+</div>
+
+	 
+	  </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/n-kats">n-kats</a></p>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
@@ -40,5 +88,25 @@
     </div>
     <script src="javascripts/scale.fix.js"></script>
     
+<script>
+var xy = new xyelm(3,3);
+$("#btne").on("click", function(){
+		});
+
+
+$("#btn").on("click", function(){
+		for(var i=0;i<3;i++){
+			for(var j=0;j<3;j++){
+				xy.setVertex(i,j, $("#a"+i.toString()+j.toString()).val());
+			}
+		}
+		$("#d").html(xy.build());
+		MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+		});
+
+</script>
+
+
+
   </body>
 </html>
