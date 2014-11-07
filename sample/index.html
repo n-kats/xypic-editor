@@ -49,8 +49,9 @@ np: ['{#1}#2{#1}', 2]
 </table>
 <input id="btn" type="button" value="update">
 <h2>edge</h2>
-<input id="from" type="text" placeholder="from :: example : 12">
-<input id="type" type="text" placeholder="command">
+<input id="from" type="text" placeholder="from :: example : 01">
+<input id="to" type="text" placeholder="to :: example : 12">
+<input id="type" type="text" placeholder="command :: example : ^{a}">
 <input id="btne" type="button" value="update-edge">
 
 <div id="d">
@@ -69,8 +70,18 @@ np: ['{#1}#2{#1}', 2]
 var xy = new xyelm(3,3);
 
 $("#btne").on("click", function(){
-		//eds.push([$("#from").val(),$("#type").val()]);
+		var i = parseInt($("#from").val()[0]);
+		var j = parseInt($("#from").val()[1]);
+		var from = new vertex(i,j,xy.vertexes[i][j]);
+		var ii = parseInt($("#to").val()[0]);
+		var jj = parseInt($("#to").val()[1]);
+		var to = new vertex(ii,jj,xy.vertexes[ii][jj]);
+		var val = $("#type").val();
+		var e = new edge(from,to,val);
 
+		xy.addEdge(e);
+		$("#d").html(xy.build());
+		MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 		});
 
 
