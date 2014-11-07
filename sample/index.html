@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="./xypic.js"></script>
+<script src="../dist/javascripts/xygen.js"></script>
+<script>
+MathJax.Hub.Config({
+tex2jax: {
+inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+displayMath: [ ['$$','$$'], ["\\[","\\]"] ]
+},
+TeX: {
+Macros: {
+C: '{\\mathbb C}',
+R: '{\\mathbb R}',
+Q: '{\\mathbb Q}',
+Z: '{\\mathbb Z}',
+diag: '\\mathop{\\mathrm{diag}}\\nolimits',
+np: ['{#1}#2{#1}', 2]
+}
+}
+});
+</script>
+</head>
+<body>
+
+<table>
+	<tr>
+		<td><input type="text" id="a00"></td>
+		<td><input type="text" id="a01"></td>
+		<td><input type="text" id="a02"></td>
+	</tr>
+
+	<tr>
+		<td><input type="text" id="a10"></td>
+		<td><input type="text" id="a11"></td>
+		<td><input type="text" id="a12"></td>
+	</tr>
+
+	<tr>
+		<td><input type="text" id="a20"></td>
+		<td><input type="text" id="a21"></td>
+		<td><input type="text" id="a22"></td>
+	</tr>
+</table>
+<input id="btn" type="button" value="update">
+<h2>edge</h2>
+<input id="from" type="text" placeholder="from :: example : 12">
+<input id="type" type="text" placeholder="command">
+<input id="btne" type="button" value="update-edge">
+
+<div id="d">
+\[
+
+\xymatrix{
+	00 & 01 & 02 \\
+	10 & 11 \ar[u]_h & 12 \\
+	20 \ar[rr]_{\varphi_{ji}} \ar[ruu]^{f_i} \ar[ru]_{\varphi} & 21 & 22 \ar[luu]_{f_i} \ar[lu]^{\varphi_j} \\
+}
+
+\]
+</div>
+<script>
+
+var xy = new xyelm(3,3);
+
+$("#btne").on("click", function(){
+		//eds.push([$("#from").val(),$("#type").val()]);
+
+		});
+
+
+$("#btn").on("click", function(){
+		for(var i=0;i<3;i++){
+			for(var j=0;j<3;j++){
+				var v = new vertex(parseInt(i),parseInt(j), $("#a"+i.toString()+j.toString()).val());
+				xy.setVertex(v);
+			}
+		}
+		$("#d").html(xy.build());
+		MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+		});
+
+</script>
+</body>
+</html>

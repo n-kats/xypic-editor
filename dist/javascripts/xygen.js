@@ -14,7 +14,7 @@ var xyelm = (function () {
         for (var i = 0; i < h; i++) {
             this.edgesMap[i] = new Array(w);
             for (var j = 0; j < w; j++) {
-                this.edges[i][j] = [];
+                this.edgesMap[i][j] = [];
             }
         }
     }
@@ -80,6 +80,7 @@ var vertex = (function () {
     function vertex(i, j, value) {
         this.i = i;
         this.j = j;
+        this.value = value;
     }
     vertex.prototype.toTeX = function () {
         return this.value;

@@ -20,7 +20,7 @@ class xyelm {
         for (var i = 0; i < h; i++) {
             this.edgesMap[i] = new Array(w);
             for (var j = 0; j < w; j++) {
-                this.edges[i][j] = [];
+                this.edgesMap[i][j] = [];
             }
         }
         
@@ -89,6 +89,7 @@ class vertex {
     constructor(i: number, j: number, value: string) {
         this.i = i;
         this.j = j;
+        this.value = value;
     }
 
     toTeX(): string {
