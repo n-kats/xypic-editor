@@ -1,13 +1,13 @@
 class xyelm {
     hight: number;
-    weight: number;
+    width: number;
     vertexes: string[][];
     edges: edge[];
     edgesMap: string[][][];
 
     constructor(h, w) {
         this.hight = h;
-        this.weight = w;
+        this.width = w;
         this.vertexes = new Array(h);
         for (var i = 0; i < h; i++) {
             this.vertexes[i] = new Array(w);
@@ -62,11 +62,11 @@ class xyelm {
     public deleteVertex(i: number, j: number) {
         this.vertexes[i][j] = "";
     }
-    public build() : string {
+    public build(): string {
         var str = "";
         str += "\\[\\xymatrix{"
         for (var i = 0; i < this.hight; i++) {
-            for (var j = 0; j < this.weight; j++) {
+            for (var j = 0; j < this.width; j++) {
                 if (j != 0) { str += " & " }
                 str += this.vertexes[i][j];
                 var eds = this.edgesMap[i][j];
