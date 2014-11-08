@@ -1,3 +1,4 @@
+/// <reference path="../typings/tsd.d.ts" />
 class xyelm {
     hight: number;
     width: number;
@@ -9,6 +10,14 @@ class xyelm {
         this.hight = h;
         this.width = w;
         this.vertexes = new Array(h);
+        /*
+        _.times(h, (i) => {
+            this.vertexes[i] = new Array(w);
+            _.times(w, (j) => {
+                this.vertexes[i][j] = "";
+            });
+        });
+        */
         for (var i = 0; i < h; i++) {
             this.vertexes[i] = new Array(w);
             for (var j = 0; j < w; j++) {
@@ -99,7 +108,7 @@ class vertex {
         this.value = "";
     }
     eq(v: vertex): boolean {
-        var flag = (this.i == v.j);
+        var flag = (this.i == v.i);
         flag = flag && (this.j == v.j);
         flag = flag && (this.value == v.value); 
         return flag;
