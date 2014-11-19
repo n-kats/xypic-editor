@@ -8,11 +8,13 @@ app.controller("edgeCtrl", function(){
     var e = new edge(from,to,x.type || "");
 		this.edges.push(e);
     xy.addEdge(e);
-	};
-	this.edit = function(index){};
-	this.destroy = function(index){
-		this.edges.splice(index,1);
-	};
+		$("#d").html(xy.build());
+		MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
+  };
+  this.edit = function(index){};
+  this.destroy = function(index){
+    this.edges.splice(index,1);
+  };
 });
 app.controller("newEdgeCtrl", function(){
 	
