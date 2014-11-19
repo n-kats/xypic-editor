@@ -18,7 +18,6 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
 	<script src="javascripts/xypic.js"></script>
 	<script src="javascripts/xygen.js"></script>
-	<script src="javascripts/app.js"></script>
   </head>
   <body>
     <div class="wrapper">
@@ -64,9 +63,9 @@
 <input id="btn" type="button" value="update">
 <h2>edge(not implemented)</h2>
 <div ng-controller="edgeCtrl as ar">
-	<form ng-controller="newEdgeCtrl as edge" ng-submit="ar.add(edge)">
-		<input ng-model="edge.from" id="from" type="text" placeholder="from :: example : 01">
-		<input ng-model="edge.to" id="to" type="text" placeholder="to :: example : 12">
+	<form ng-controller="newEdgeCtrl as edge" ng-submit="ar.add(edge)" novalidate>
+		<input ng-model="edge.from" id="from" type="text" placeholder="from :: example : 01" required>
+		<input ng-model="edge.to" id="to" type="text" placeholder="to :: example : 12" required>
 		<input ng-model="edge.type" id="type" type="text" placeholder="command :: example : ^{f^*}">
 		<input id="btne" type="submit" value="add-edge">
 	</form>
@@ -96,14 +95,11 @@
     
 <script>
 var xy = new xyelm(3,3);
-$("#btne").on("click", function(){
-		});
-
 
 $("#btn").on("click", function(){
 		for(var i=0;i<3;i++){
 			for(var j=0;j<3;j++){
-				xy.setVertex(i,j, $("#a"+i.toString()+j.toString()).val());
+				xy.setVertex(new vertex(i,j, $("#a"+i.toString()+j.toString()).val()));
 			}
 		}
 		$("#d").html(xy.build());
@@ -113,6 +109,7 @@ $("#btn").on("click", function(){
 </script>
 
 
+	<script src="javascripts/app.js"></script>
 
   </body>
 </html>
